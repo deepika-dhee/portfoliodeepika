@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Deepika's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+  <style>
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+    body {
+      background-color: #1e1e1e;
+      color: #fff;
+      overflow-x: hidden;
+    }
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    header, main, footer {
+      position: relative;
+      z-index: 1;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: linear-gradient(to right, rgba(30,30,30,0.9), rgba(0,200,255,0.2));
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 20px rgba(0,200,255,0.5);
+      animation: slideDown 1s ease forwards;
+    }
+    @keyframes slideDown {
+      0% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    header h1 {
+      font-size: 24px;
+      font-weight: 700;
+      background: linear-gradient(270deg, #00f0ff, #ff00cc, #00ffcc);
+      background-size: 600% 600%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradientText 5s ease infinite;
+    }
+    @keyframes gradientText {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    nav a {
+      text-decoration: none;
+      color: #ccc;
+      margin-left: 20px;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+    nav a:hover {
+      color: #00c8ff;
+    }
+    section {
+      padding: 100px 40px;
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    section h2 {
+      font-size: 34px;
+      text-align: center;
+      margin-bottom: 40px;
+      color: #00c8ff;
+      animation: glowText 3s ease-in-out infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #00c8ff; }
+      to { text-shadow: 0 0 20px #00c8ff, 0 0 30px #00c8ff; }
+    }
+    .section-box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      background: rgba(255,255,255,0.05);
+      padding: 30px;
+      border-radius: 14px;
+      transition: all 0.6s ease;
+      box-shadow: 0 0 20px rgba(0,200,255,0.1);
+    }
+    .section-box:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 40px rgba(0, 200, 255, 0.3);
+    }
+    .about-left img {
+      max-width: 160px;
+      border-radius: 10%;
+      border: 4px solid #00c8ff;
+      transition: transform 1.2s ease-in-out;
+      cursor: pointer;
+    }
+    .about-left img:hover {
+      transform: scale(1.5) rotate(720deg);
+    }
+    .card, .skills-card, .details {
+      background: rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 25px;
+      color: white;
+      text-align: center;
+      transition: transform 0.5s ease, background 0.3s;
+    }
+    .card:hover, .skills-card:hover, .details:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(255,255,255,0.15);
+      box-shadow: 0 0 20px #00c8ff88;
+    }
+    .card img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+    .social-links {
+      margin-top: 12px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+    }
+    .social-links a {
+      border: 2px solid white;
+      border-radius: 50%;
+      padding: 12px;
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      transition: transform 0.5s, background-color 0.3s;
+    }
+    .social-links a:hover {
+      transform: rotate(360deg) scale(1.2);
+      background-color: white;
+      color: #2e2e2e;
+    }
+    .social-links img {
+      width: 24px;
+      height: 24px;
+    }
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,200,255,0.2));
+      color: #aaa;
+      font-size: 14px;
+      animation: slideUp 1s ease forwards;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    @media (max-width: 900px) {
+      .section-box {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="particles-js"></div>
+
+  <!-- HEADER -->
+  <header>
+    <h1>Deepika P</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+      <a href="#tool">tools</a>
+
+    </nav>
+  </header>
+
+  <!-- PROFILE SECTION -->
+  <section id="profile" data-aos="fade-up">
+    <div class="section-box" style="flex-direction: column; align-items: center; text-align: center;">
+      <h2 style="font-size: 36px; margin-bottom: 10px;">Deepika P</h2>
+      <p style="font-size: 18px; color: #ccc; margin-bottom: 20px;">AI & ML Final Year Student | Azure Certified | Exploring Generative AI | Tech Enthusiast | Java • Python • MS office  | Building Future-Ready Skills</p>
+      <div class="social-links" style="margin-bottom: 20px;">
+        <a href="https://github.com/deepika-dhee" target="_blank">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" />
+        </a>
+        <a href="https://www.linkedin.com/in/deepika-panneer-selvam-a71b25257" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" />
+        </a>
+      </div>
+      <a href="DEEPIKA.CV.pdf" target="_blank" class="download-btn" style="padding: 10px 20px; border-radius: 8px; background: #00c8ff; color: #1e1e1e; font-weight: 600; text-decoration: none; transition: all 0.4s ease;">
+        View my Resume
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="section-box">
+      <div class="about-left">
+        <img src="pp.jpg" alt="Profile Image" />
+      </div>
+      <div class="about-right">
+        <p>I’m Deepika, a passionate and curious final year B.Tech student specializing in Artificial Intelligence and Machine Learning. I’m deeply interested in the power of intelligent systems and how they can transform real-world problems into innovative solutions. My learning journey blends strong fundamentals in Python, Java, and web technologies with hands-on experience through projects like Text-to-Image Transformation and a Personalized Tutor Bot.
+
+I hold a certification in Microsoft Azure Fundamentals and am actively exploring the world of Generative AI through practical applications. I thrive in collaborative environments, enjoy solving complex problems, and continuously seek opportunities to grow in this ever-evolving tech landscape. Whether it’s contributing to meaningful projects or learning something new, I bring dedication, creativity, and an eagerness to make an impact.</p>
+      </div>
+    </div>
+  </section>
+
+ <!-- SKILLS SECTION -->
+<section id="skills">
+  <h2 class="skills-title">My Skills</h2>
+  <div class="section-box" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+
+    <!-- Languages -->
+    <div class="skills-card">
+      <h3 class="skill-heading" style="color: #00c8ff;">📚Languages</h3>
+      <div class="skills-list">
+        <p>C</p>
+        <p>Python</p>
+        <p>Java</p>
+        <p>MS Office</p>
+        <p>HTML</p>
+      </div>
+    </div>
+
+    <!-- Concepts -->
+    <div class="skills-card">
+      <h3 class="skill-heading" style="color: #00c8ff;">🔍Concepts</h3>
+      <div class="skills-list">
+        <p>AI & ML</p>
+        <p>DBMS</p>
+        <p>DWDM</p>
+        <p>SQL</p>
+        <p>Computer Networks</p>
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="skills-card">
+      <h3 class="skill-heading" style="color: #00c8ff;">🛠️Tools</h3>
+      <div class="skills-list">
+        <p>VS Code</p>
+        <p>Jupyter</p>
+        <p>MongoDB</p>
+        <p>Canva</p>
+        <p>GitHub</p>
+        <p>LinkedIn</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+    
+  <!-- PROJECTS -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="section-box">
+      <div class="card">
+        <img src="text.jpg" alt="Text to Image Project">
+        <h3>Text to Image Transformation – 2024</h3>
+        <p>Text-to-Image Transformation uses AI to generate realistic images from natural language descriptions, enabling meaningful visual. interpretation for use in design, virtual reality, marketing, and more.</p>
+        <a href="https://github.com/deepika-dhee/text-image-transform" target="_blank" 
+     style="margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.4s ease, filter 0.4s ease;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"
+         style="width: 32px; height: 32px; filter: brightness(1) drop-shadow(0 0 2px #00c8ff); transition: transform 0.4s ease, filter 0.4s ease;"
+         onmouseover="this.style.transform='rotate(360deg) scale(1.3)'; this.style.filter='brightness(2) drop-shadow(0 0 8px #00c8ff)';"
+         onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.filter='brightness(1) drop-shadow(0 0 2px #00c8ff)';"
+    />
+  </a>
+      </div>
+      <div class="card">
+        <img src="tutor.jpg" alt="Tutor Bot Project">
+        <h3>Personalized Tutor Bot – 2025</h3>
+        <p>A personalized tutor bot delivers tailored learning by adapting to each student's style, pace, and needs, offering support, real-time feedback, and helping close knowledge gaps.</p>
+        <a href="https://github.com/deepika-dhee/Personalized-Tutor-Bot" target="_blank" 
+     style="margin-top: 12px; display: inline-flex; align-items: center; justify-content: center; transition: transform 0.4s ease, filter 0.4s ease;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub"
+         style="width: 32px; height: 32px; filter: brightness(1) drop-shadow(0 0 2px #00c8ff); transition: transform 0.4s ease, filter 0.4s ease;"
+         onmouseover="this.style.transform='rotate(360deg) scale(1.3)'; this.style.filter='brightness(2) drop-shadow(0 0 8px #00c8ff)';"
+         onmouseout="this.style.transform='rotate(0deg) scale(1)'; this.style.filter='brightness(1) drop-shadow(0 0 2px #00c8ff)';"
+    />
+  </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certs">
+    <h2>Certifications</h2>
+    <div class="section-box">
+      <div class="card">
+        <img src="oft.jpg" alt="Inplant Training">
+        <h3>Inplant Training</h3>
+        <p>2024 - OFT</p>
+      </div>
+      <div class="card">
+        <img src="af.jpg" alt="Azure Fundamentals">
+        <h3>microsoft Azure Fundamentals</h3>
+        <p>2024 - Microsoft</p>
+      </div>
+      <div class="card">
+        <img src="ai.jpg" alt="Applied Generative AI">
+        <h3>Applied Generative AI</h3>
+        <p>2025 - Simplilearn</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="section-box">
+      <div class="details">
+        <h3>B.Tech - AI & ML</h3>
+        <p>K. Ramakrishnan College of Technology,Trichy</p>
+        <p>2022 - 2026</p>
+      </div>
+      <div class="details">
+        <h3>H.S.C</h3>
+        <p>Guru Gnana Sambandar mission matriculation Hr sec School,Mayiladuthurai</p>
+        <p>2022</p>
+      </div>
+      <div class="details">
+        <h3>S.S.L.C</h3>
+        <p>Guru Gnana Sambandar mission matriculation Hr sec Schoo,Mayiladuthurai</p>
+        <p>2020</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="section-box">
+      <div class="details">
+        <h3>💌Email</h3>
+        <p>deepikadeepika2k24@gmail.com</p>
+      </div>
+      <div class="details">
+        <h3>📍Location</h3>
+        <p>Samayapuram,Trichy</p>
+      </div>
+    </div>
+
+
+   <!-- Gap and centered form -->
+<div style="width: 100%; display: flex; justify-content: center; margin-top: 40px;">
+  <div class="details" style="max-width: 600px; width: 100%;">
+    <h3 style="text-align: center;">connect with me </h3>
+    <form action="https://formspree.io/f/xblyeabn" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required style="padding: 10px; border-radius: 8px; border: none; width: 100%; margin-bottom: 10px;">
+      <input type="email" name="email" placeholder="Your Email" required style="padding: 10px; border-radius: 8px; border: none; width: 100%; margin-bottom: 10px;">
+      <textarea name="message" rows="5" placeholder="Your Message" required style="padding: 10px; border-radius: 8px; border: none; width: 100%; margin-bottom: 10px;"></textarea>
+      <button type="submit" style="padding: 10px; border-radius: 8px; background-color: #00c8ff; color: #1e1e1e; font-weight: 600; border: none; cursor: pointer; width: 100%;">Send Message</button>
+    </form>
+  </div>
+</div>
+
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Deepika P. All rights reserved.</p>
+  </footer>
+
+  <!-- PARTICLES JS -->
+  <script>
+    particlesJS('particles-js', {
+      particles: {
+        number: { value: 100 },
+        color: { value: "#00c8ff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5 },
+        size: { value: 3, random: true },
+        line_linked: {
+          enable: true,
+          distance: 120,
+          color: "#00c8ff",
+          opacity: 0.6,
+          width: 1
+        },
+        move: {
+          enable: true,
+          speed: 2,
+          direction: "none",
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "grab" },
+          onclick: { enable: true, mode: "push" },
+          resize: true
+        },
+        modes: {
+          grab: { distance: 200, line_linked: { opacity: 0.8 } },
+          push: { particles_nb: 4 }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+
+  <!-- HEADER NAV SMOOTH SCROLL ONLY -->
+  <script>
+    document.querySelectorAll('header nav a').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - headerHeight + 10;
+
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>AOS.init({ duration: 1200, once: true });</script>
+</body>
+</html>
